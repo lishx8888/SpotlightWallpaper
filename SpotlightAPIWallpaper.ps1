@@ -169,7 +169,7 @@ function Test-IsDuplicateWallpaper {
         $newFileHash = Get-FileHashValue -filePath $newFilePath
         if ($newFileHash -eq $null) {
             Write-Host "Could not calculate hash for the new file. Skipping duplicate check."
-            return $false
+            return @{ IsDuplicate = $false; DuplicatePath = $null }
         }
         
         Write-Host "New file hash: $newFileHash"
@@ -179,9 +179,10 @@ function Test-IsDuplicateWallpaper {
             $cachedHash = $hashCache.FileHashes[$filePath].Hash
             if ($cachedHash -eq $newFileHash) {
                 $duplicateFileName = $hashCache.FileHashes[$filePath].FileName
-                Write-Host "Duplicate found! Same content as $duplicateFileName"
-                Add-LogEntry -message "Duplicate image found: $newFilePath is same as $duplicateFileName"
-                return $true
+                $duplicatePath = $filePath # This is the full path from the cache
+                Write-Host "Duplicate found! Same content as $duplicateFileName at $duplicatePath"
+                Add-LogEntry -message "Duplicate image found: $newFilePath is same as $duplicateFileName at $duplicatePath"
+                return @{ IsDuplicate = $true; DuplicatePath = $duplicatePath }
             }
         }
         
@@ -207,7 +208,7 @@ function Test-IsDuplicateWallpaper {
                 if ($cachedHash -eq $newFileHash) {
                     Write-Host "Duplicate found in cache! Same content as $($file.Name)"
                     Add-LogEntry -message "Duplicate image found: $newFilePath is same as $($file.Name)"
-                    return $true
+                    return @{ IsDuplicate = $true; DuplicatePath = $file.FullName }
                 }
             } else {
                 # Calculate hash for files not in cache and add to cache
@@ -215,7 +216,7 @@ function Test-IsDuplicateWallpaper {
                 if ($existingFileHash -eq $newFileHash) {
                     Write-Host "Duplicate found during full scan! Same content as $($file.Name)"
                     Add-LogEntry -message "Duplicate image found: $newFilePath is same as $($file.Name)"
-                    return $true
+                    return @{ IsDuplicate = $true; DuplicatePath = $file.FullName }
                 } else {
                     # Update cache with this file's hash for future checks
                     $hashCache = Update-HashCache -cache $hashCache -filePath $file.FullName -fileHash $existingFileHash
@@ -226,11 +227,11 @@ function Test-IsDuplicateWallpaper {
         # If no duplicates found, add this file's hash to the cache
         $hashCache = Update-HashCache -cache $hashCache -filePath $newFilePath -fileHash $newFileHash
         
-        return $false
+        return @{ IsDuplicate = $false; DuplicatePath = $null }
     } catch {
         Write-Host "Error during duplicate check: $($_.Exception.Message)"
         Add-LogEntry -message "Error during duplicate check: $($_.Exception.Message)"
-        return $false
+        return @{ IsDuplicate = $false; DuplicatePath = $null }
     }
 }
 
@@ -343,7 +344,7 @@ Write-Host "Starting Spotlight API Wallpaper Script..."
 Add-LogEntry -message "Script started"
 
 # Configuration
-$saveFolder = "D:\TD\Pictures\SpotlightWallpapers"
+$saveFolder = "E:\TD\Pictures\SpotlightWallpapers"
 $today = Get-Date -Format "yyyyMMdd"
 $imageNameBase = "spot_api_"
 $logFile = "$PSScriptRoot\spotlight_api_wallpaper_log.txt"
@@ -539,11 +540,24 @@ function Get-SpotlightWallpaperFromAPI {
                 $fileInfo = Get-Item -Path $imagePath
                 if ($fileInfo.Length -ge $minFileSize) {
                     # Check for duplicates using the hash cache
-                    if (Test-IsDuplicateWallpaper -newFilePath $imagePath -hashCache $hashCache) {
+                    $duplicateCheck = Test-IsDuplicateWallpaper -newFilePath $imagePath -hashCache $hashCache
+                    if ($duplicateCheck.IsDuplicate) {
                         Write-Host "Duplicate image detected, removing file: $imagePath"
                         Add-LogEntry -message "Removed duplicate image: $imagePath"
                         Remove-Item -Path $imagePath -Force
-                        return $null
+                        
+                        # Return the existing duplicate file instead of null
+                        Write-Host "Using existing duplicate file: $($duplicateCheck.DuplicatePath)"
+                        Add-LogEntry -message "Using existing duplicate file: $($duplicateCheck.DuplicatePath)"
+                        
+                        # Get file info for the duplicate
+                        $duplicateFileInfo = Get-Item -Path $duplicateCheck.DuplicatePath
+                        return @{
+                            Path = $duplicateCheck.DuplicatePath
+                            Size = $duplicateFileInfo.Length
+                            URL = $landscapeUrl
+                            IsDuplicate = $true
+                        }
                     }
                     
                     return @{
