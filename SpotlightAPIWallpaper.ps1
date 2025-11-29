@@ -486,8 +486,36 @@ function Set-Wallpaper {
         [Wallpaper]::SystemParametersInfo(20, 0, $imagePath, 3)
         
         # Force desktop refresh to ensure wallpaper changes are visible
-        Add-Type -AssemblyName System.Windows.Forms
-        [System.Windows.Forms.SendKeys]::SendWait("{F5}")
+        # Use Windows API to refresh the desktop directly instead of sending F5 key
+        Add-Type @"
+        using System;
+        using System.Runtime.InteropServices;
+        public class DesktopRefresh {
+            [DllImport("user32.dll", SetLastError = true)]
+            public static extern IntPtr GetDesktopWindow();
+            
+            [DllImport("user32.dll", SetLastError = true)]
+            public static extern bool UpdateWindow(IntPtr hWnd);
+            
+            [DllImport("user32.dll", SetLastError = true)]
+            public static extern bool RedrawWindow(IntPtr hWnd, IntPtr lprcUpdate, IntPtr hrgnUpdate, uint flags);
+            
+            public static void Refresh() {
+                // Get desktop window handle
+                IntPtr desktopWindow = GetDesktopWindow();
+                
+                // Update the window
+                UpdateWindow(desktopWindow);
+                
+                // Redraw the window to ensure wallpaper changes are visible
+                // RDW_INVALIDATE = 0x0001, RDW_UPDATENOW = 0x0100, RDW_ERASE = 0x0004
+                RedrawWindow(desktopWindow, IntPtr.Zero, IntPtr.Zero, 0x0105);
+            }
+        }
+"@
+        
+        # Call the desktop refresh function
+        [DesktopRefresh]::Refresh()
         
         return $true
     } catch {

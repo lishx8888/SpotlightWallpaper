@@ -3,7 +3,7 @@ Option Explicit
 Dim shell, cmd, batchPath
 
 ' 设置默认PowerShell脚本路径
-batchPath = "D:\github\SpotlightWallpaper\SpotlightAPIWallpaper.ps1"
+batchPath = "E:\github\SpotlightWallpaper\SpotlightAPIWallpaper.ps1"
 
 ' 检查是否提供了自定义批处理文件路径作为参数
 If WScript.Arguments.Count > 0 Then

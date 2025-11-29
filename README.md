@@ -1,171 +1,203 @@
-# Windows聚焦壁纸自动设置工具
+# Windows Spotlight 壁纸下载器
 
-这个项目提供了一个简单而实用的解决方案，让您的Windows系统自动通过在线API获取Windows聚焦壁纸并设置为桌面背景，同时支持自动清理旧壁纸以节省存储空间。
+一个专为Linux系统（特别是Armbian）设计的Windows Spotlight壁纸自动下载工具，支持SHA256去重功能，确保不会重复下载相同的壁纸。
 
-## 功能特点
+## 功能特性
 
-- 自动从在线API获取最新的Windows聚焦壁纸
-- 开机自动运行，支持静默执行不打扰用户
-- 壁纸可自定义保存在任意目录，避免重复下载
-- 自动清理超过指定天数的旧壁纸，默认保留30天
-- 自动清理现有重复图片，保留最新版本
-- 提供多种运行模式：开机运行、每日固定时间运行、每小时运行
-- 无弹窗静默运行，不干扰用户工作
-- 包含详细的操作日志记录
-- 基于哈希缓存的高效重复壁纸检测机制（通过文件内容比较）
+- ✅ 自动下载Windows Spotlight壁纸
+- ✅ 使用SHA256哈希进行精确去重
+- ✅ 智能缓存管理和格式迁移
+- ✅ 完善的错误处理和日志记录
+- ✅ 高度兼容性，特别优化支持Armbian系统
+- ✅ 支持定时自动运行
 
-## 文件说明
+## 系统要求
 
-- **SpotlightAPIWallpaper.ps1**: PowerShell脚本，自动从API获取Windows聚焦壁纸并设置为桌面背景，包含自动清理和重复检测功能
-- **SetupSpotlightAPIWallpaper.bat**: 批处理文件，帮助您设置开机自启动或定时运行任务
-- **SilentRunBatch.vbs**: VBS脚本，用于静默运行PowerShell脚本，避免显示命令窗口弹窗
-- **spotlight_api_wallpaper_log.txt**: （自动生成）记录壁纸下载和设置历史的日志文件
-- **wallpaper_hash_cache.json**: （自动生成）存储壁纸哈希值缓存，用于高效重复检测
-- **自定义目录**: （自动生成）壁纸保存目录，可在脚本中自定义
+- **Linux系统**（特别优化支持Armbian）
+- **依赖工具**：
+  - curl (用于下载壁纸)
+  - jq (用于JSON处理，可选但推荐)
+  - sha256sum 或 openssl (用于计算SHA256哈希值)
+
+## 安装步骤
+
+### 在Armbian系统上安装
+
+1. **更新系统并安装依赖**：
+   ```bash
+   sudo apt update && sudo apt install -y curl jq openssl
+   ```
+
+2. **克隆或下载项目**：
+   ```bash
+   git clone https://github.com/yourusername/SpotlightWallpaper.git
+   cd SpotlightWallpaper
+   ```
+   或者直接下载脚本文件到您的工作目录。
+
+3. **设置脚本权限**：
+   ```bash
+   chmod +x spotlight_wallpaper.sh
+   chmod +x test_and_run_spotlight.sh
+   ```
+
+## 配置说明
+
+### 脚本默认配置
+
+- **壁纸保存目录**：`/mnt/disk/spot`
+- **缓存文件路径**：`wallpaper_hash_cache.json`
+- **API地址**：使用公共的Windows Spotlight壁纸API
+
+### 自定义配置
+
+您可以根据需要修改脚本中的以下变量：
+
+```bash
+# 编辑脚本
+nano spotlight_wallpaper.sh
+
+# 修改保存目录（找到并更改此行）
+SAVE_FOLDER="/mnt/disk/spot"
+
+# 您也可以修改日志文件路径
+LOG_FILE="wallpaper_log.txt"
+```
 
 ## 使用方法
 
-### 快速设置（推荐）
+### 手动运行
 
-1. 以**管理员身份**运行`SetupSpotlightAPIWallpaper.bat`文件
-2. 根据提示选择运行模式：
-   - 选项1：开机时运行 - **无弹窗运行**
-   - 选项2：每天早上08:10运行 - **无弹窗运行**
-   - 选项3：每小时运行 - **无弹窗运行**
-3. 等待任务计划创建完成
-
-> **注意**：系统会使用VBS脚本静默运行PowerShell脚本，不会显示命令窗口弹窗
-
-### 手动运行壁纸下载和设置
-
-如果您想立即获取并设置Windows聚焦壁纸：
-
-1. 打开PowerShell（不需要管理员权限）
-2. 导航到脚本所在目录
-3. 运行命令：`.\SpotlightAPIWallpaper.ps1`
-
-## 自定义设置
-
-#### 自定义壁纸保存目录
-
-1. 用文本编辑器打开`SpotlightAPIWallpaper.ps1`文件
-2. 找到`# Configuration`部分
-
-#### 哈希缓存重复检测机制
-
-脚本使用高效的哈希缓存机制（MD5）来检测重复壁纸，确保不会下载内容相同的图片：
-
-- 所有下载的壁纸哈希值会保存在 `wallpaper_hash_cache.json` 文件中
-- 每次下载新壁纸前，会先计算其哈希值并与缓存对比
-- 这种方法能准确识别内容相同但URL或文件名不同的重复图片
-- 哈希缓存会自动清理不存在的文件条目，保持精简
-
-#### 重复图片清理功能
-
-脚本不仅能防止新的重复图片被保存，还能自动清理现有的重复图片：
-
-- 在每次运行时，会扫描壁纸目录中的所有文件
-- 识别内容相同的重复图片，并保留最新的版本
-- 自动删除多余的重复文件，节省磁盘空间
-- 清理操作完成后会更新哈希缓存并记录到日志文件
-3. 找到并修改`$saveFolder`变量为您想要的保存目录路径
-   ```powershell
-   # 示例：修改为D盘目录
-   $saveFolder = "D:\TD\Pictures\SpotlightWallpapers"
+1. **基本运行**：
+   ```bash
+   ./spotlight_wallpaper.sh
    ```
-4. 保存文件
 
-> **注意**：请确保指定的目录路径格式正确，使用双反斜杠或单斜杠分隔目录，并且您有该目录的读写权限。如果目录不存在，脚本会自动创建。
-
-### 修改旧壁纸保留天数
-
-1. 用文本编辑器打开`SpotlightAPIWallpaper.ps1`文件
-2. 找到`# Configuration`部分
-3. 找到并修改`$retentionDays`变量为您想要保留的天数
-   ```powershell
-   # 示例：修改为保留7天
-   $retentionDays = 7
+2. **使用测试脚本验证功能**：
+   ```bash
+   ./test_and_run_spotlight.sh
    ```
-4. 保存文件
+   这个测试脚本会自动检查系统环境、依赖项、缓存文件，并运行主脚本进行测试。
 
-> **注意**：清理操作在每次脚本运行时都会执行，会自动删除所有创建日期早于计算截止日期的壁纸文件。
+### 设置定时任务
 
-### 关于计划任务的说明
+要让壁纸下载器定期自动运行，请设置crontab任务：
 
-修改壁纸保存目录或保留天数后，**不需要删除或重新创建计划任务**。这是因为：
-
-- 计划任务只是调用`SpotlightAPIWallpaper.ps1`脚本文件
-- 所有配置（如保存目录和保留天数）都存储在脚本本身中
-- 修改脚本后，下次计划任务运行时会自动使用新的配置
-
-如果您想更改运行模式（如从"开机时运行"改为"每天08:10运行"），则需要：
-
-1. 按Win + R键打开运行对话框
-2. 输入`taskschd.msc`并按回车
-3. 在任务计划程序库中找到现有的"WindowsSpotlightAPIWallpaper"任务
-4. 右键点击并选择"删除"
-5. 重新运行`SetupSpotlightAPIWallpaper.bat`选择新的运行模式
-
-### 修改API设置
-
-如果需要修改API相关设置，可以在`SpotlightAPIWallpaper.ps1`文件的`# Configuration`部分找到相关变量：
-
-```powershell
-# API设置
-$apiUrl = "https://api.qzink.me/spotlight"
-$maxRetries = 3
-$retryDelay = 10 # seconds
-```
-
-### 修改最小下载间隔
-
-当使用每小时运行模式时，可以调整两次下载之间的最小时间间隔，避免过于频繁地更新壁纸：
-
-1. 用文本编辑器打开`SpotlightAPIWallpaper.ps1`文件
-2. 找到`# Configuration`部分
-3. 找到并修改`$minDownloadInterval`变量为您想要的最小间隔（分钟）
-   ```powershell
-   # 示例：修改为45分钟
-   $minDownloadInterval = 45 # Minutes between downloads
+1. **编辑crontab**：
+   ```bash
+   crontab -e
    ```
-4. 保存文件
 
-> **注意**：即使设置了每小时运行的计划任务，如果距离上次下载壁纸的时间小于这个最小间隔，脚本会跳过下载新壁纸，但仍会将最近的壁纸设置为桌面背景。
+2. **添加定时任务**（例如每小时运行一次）：
+   ```bash
+   0 * * * * cd /path/to/SpotlightWallpaper && ./spotlight_wallpaper.sh >> /path/to/SpotlightWallpaper/wallpaper_log.txt 2>&1
+   ```
+   请将`/path/to/SpotlightWallpaper`替换为实际的脚本路径。
+
+3. **或者每天早上8点运行**：
+   ```bash
+   0 8 * * * cd /path/to/SpotlightWallpaper && ./spotlight_wallpaper.sh >> /path/to/SpotlightWallpaper/wallpaper_log.txt 2>&1
+   ```
+
+## 自动设置壁纸
+
+如果您想让系统自动使用下载的壁纸作为桌面背景，可以使用以下方法：
+
+### 使用feh设置壁纸（推荐）
+
+1. **安装feh**：
+   ```bash
+   sudo apt install -y feh
+   ```
+
+2. **创建一个简单的设置壁纸脚本**：
+   ```bash
+   nano set_wallpaper.sh
+   ```
+
+3. **添加以下内容**：
+   ```bash
+   #!/bin/bash
+   SAVE_FOLDER="/mnt/disk/spot"
+   # 选择最新的壁纸设置为桌面背景
+   feh --bg-scale $(ls -t $SAVE_FOLDER/*.jpg | head -n1)
+   ```
+
+4. **设置脚本权限**：
+   ```bash
+   chmod +x set_wallpaper.sh
+   ```
+
+5. **将其添加到启动项或定时任务**：
+   ```bash
+   # 添加到crontab，每小时更新一次壁纸
+   0 * * * * /path/to/set_wallpaper.sh
+   ```
 
 ## 故障排除
 
-### 常见问题
+### 常见问题及解决方案
 
-1. **无法下载壁纸**
-   - 检查网络连接是否正常
-   - 确认API服务是否可访问
-   - 查看spotlight_api_wallpaper_log.txt日志文件获取详细错误信息
+1. **下载失败**
+   - 检查网络连接
+   - 确认curl是否正确安装
+   - 查看日志文件获取详细错误信息
 
-2. **壁纸未设置成功**
-   - 确认PowerShell脚本是否有足够权限设置壁纸
-   - 检查壁纸文件是否成功下载到保存目录
+2. **缓存文件错误**
+   - 如果出现JSON解析错误，可以手动删除缓存文件：
+     ```bash
+     mv wallpaper_hash_cache.json wallpaper_hash_cache.json.bak
+     ```
+   - 下次运行脚本时会自动创建新的缓存文件
 
-3. **开机后壁纸未更新**
-   - 确认任务计划是否正确设置为开机自启动
-   - 检查是否有足够的网络连接时间让脚本执行
+3. **权限问题**
+   - 确保脚本有执行权限：`chmod +x spotlight_wallpaper.sh`
+   - 确保保存目录有写入权限
 
-4. **下载的壁纸质量不佳**
-   - 脚本从API获取的是可用的最佳质量壁纸，如果需要修改，可以检查API响应中是否有其他分辨率选项
+4. **jq相关错误**
+   - 如果遇到jq语法错误，确保jq版本兼容
+   - 可以尝试更新jq：`sudo apt install --reinstall jq`
 
-## 注意事项
+## 日志文件
 
-- 本功能需要网络连接才能下载最新的Windows聚焦壁纸
-- 壁纸保存在您自定义的目录中，通过自动清理功能避免占用过多磁盘空间
-- 首次运行时会自动创建壁纸保存目录
-- 脚本在每次运行时都会尝试获取新壁纸，并清理旧壁纸
-- 此工具仅在Windows操作系统上运行
-- 任务计划程序设置需要管理员权限
-- 所有操作都会记录到日志文件中，便于排查问题
-- 使用第三方API服务获取Windows聚焦壁纸，服务可用性可能受外部因素影响
+脚本会输出日志信息到终端，同时也可以通过添加重定向到文件来保存日志：
 
-##### 版本历史
+```bash
+./spotlight_wallpaper.sh >> wallpaper_log.txt 2>&1
+```
 
-- 1.0.0: 初始版本，实现从API获取Windows聚焦壁纸并设置为桌面背景的功能，支持自定义保存目录和自动清理旧壁纸
-- 1.1.0: 增加每小时运行模式和最小下载间隔控制
-- 1.2.0: 添加壁纸重复检测机制，避免下载相同的壁纸，优化日志输出，增加重复检测相关信息
-- 1.3.0: 实现基于哈希缓存的高效重复检测机制，增加重复图片自动清理功能
+查看日志文件可以帮助您诊断问题：
+
+```bash
+tail -f wallpaper_log.txt
+```
+
+## 缓存管理
+
+- 缓存文件存储了已下载壁纸的哈希值，防止重复下载
+- 如果需要清除缓存重新开始，可以执行：
+  ```bash
+  mv wallpaper_hash_cache.json wallpaper_hash_cache.json.old
+  ```
+- 脚本会自动处理旧缓存格式的迁移
+
+## 关于SHA256去重功能
+
+此版本使用SHA256哈希算法进行文件去重，相比传统的MD5更安全可靠。脚本会自动：
+
+1. 为每个下载的壁纸计算SHA256哈希值
+2. 将哈希值和文件信息存储在缓存中
+3. 在下载新壁纸前检查是否已经存在
+4. 自动迁移旧格式的缓存文件
+
+## 贡献
+
+欢迎提交Issue或Pull Request来改进这个项目！
+
+## 许可证
+
+[MIT](LICENSE)
+
+---
+
+**注意**：此工具仅用于个人学习和欣赏Windows Spotlight壁纸，请勿用于商业用途。壁纸版权归Microsoft所有。
