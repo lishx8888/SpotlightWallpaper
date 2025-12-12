@@ -2607,3 +2607,11 @@
 [2025-12-11 20:09:05] Wallpaper successfully set: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251211_200903.jpg
 [2025-12-11 20:09:05] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
 [2025-12-11 20:09:05] Script completed
+[2025-12-12 10:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 10:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 10:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 10:09:06] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_100904.jpg
+[2025-12-12 10:09:06] Selected Spotlight image from API: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_100904.jpg
+[2025-12-12 10:09:06] Wallpaper successfully set: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_100904.jpg
+[2025-12-12 10:09:06] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 10:09:06] Script completed
