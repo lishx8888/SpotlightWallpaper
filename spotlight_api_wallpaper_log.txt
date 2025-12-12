@@ -2615,3 +2615,108 @@
 [2025-12-12 10:09:06] Wallpaper successfully set: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_100904.jpg
 [2025-12-12 10:09:06] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
 [2025-12-12 10:09:06] Script completed
+[2025-12-12 10:48:08] Cleaning up 1 wallpapers older than 30 days
+[2025-12-12 10:48:09] Starting duplicate wallpaper cleanup
+[2025-12-12 10:48:09] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 10:48:09] Fetching Spotlight wallpaper from API
+[2025-12-12 10:48:12] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_104811.jpg
+[2025-12-12 10:48:12] Duplicate image found: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_104811.jpg is same as spot_api_20251119_160007.jpg at e:\td\pictures\spotlightwallpapers\spot_api_20251119_160007.jpg
+[2025-12-12 10:48:12] Removed duplicate image: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_104811.jpg
+[2025-12-12 10:48:12] Using existing duplicate file: e:\td\pictures\spotlightwallpapers\spot_api_20251119_160007.jpg
+[2025-12-12 10:48:12] Selected Spotlight image from API: e:\td\pictures\spotlightwallpapers\spot_api_20251119_160007.jpg
+[2025-12-12 10:48:13] Wallpaper successfully set: e:\td\pictures\spotlightwallpapers\spot_api_20251119_160007.jpg
+[2025-12-12 10:48:13] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 10:48:13] Script completed
+[2025-12-12 11:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 11:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 11:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 11:09:05] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_110903.jpg
+[2025-12-12 11:09:05] Duplicate image found: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_110903.jpg is same as spot_api_20251119_160007.jpg at e:\td\pictures\spotlightwallpapers\spot_api_20251119_160007.jpg
+[2025-12-12 11:09:05] Removed duplicate image: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_110903.jpg
+[2025-12-12 11:09:05] Using existing duplicate file: e:\td\pictures\spotlightwallpapers\spot_api_20251119_160007.jpg
+[2025-12-12 11:09:05] Selected Spotlight image from API: e:\td\pictures\spotlightwallpapers\spot_api_20251119_160007.jpg
+[2025-12-12 11:09:05] Wallpaper successfully set: e:\td\pictures\spotlightwallpapers\spot_api_20251119_160007.jpg
+[2025-12-12 11:09:05] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 11:09:05] Script completed
+[2025-12-12 12:09:01] Cleaning up 1 wallpapers older than 30 days
+[2025-12-12 12:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 12:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 12:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 12:09:06] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_120903.jpg
+[2025-12-12 12:09:06] Selected Spotlight image from API: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_120903.jpg
+[2025-12-12 12:09:06] Wallpaper successfully set: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_120903.jpg
+[2025-12-12 12:09:06] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 12:09:06] Script completed
+[2025-12-12 13:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 13:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 13:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 13:09:05] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_130903.jpg
+[2025-12-12 13:09:05] Selected Spotlight image from API: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_130903.jpg
+[2025-12-12 13:09:05] Wallpaper successfully set: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_130903.jpg
+[2025-12-12 13:09:05] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 13:09:05] Script completed
+[2025-12-12 14:09:01] Cleaning up 1 wallpapers older than 30 days
+[2025-12-12 14:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 14:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 14:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 14:09:05] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_140903.jpg
+[2025-12-12 14:09:05] Duplicate image found: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_140903.jpg is same as spot_api_20251125_110903.jpg at e:\td\pictures\spotlightwallpapers\spot_api_20251125_110903.jpg
+[2025-12-12 14:09:05] Removed duplicate image: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_140903.jpg
+[2025-12-12 14:09:05] Using existing duplicate file: e:\td\pictures\spotlightwallpapers\spot_api_20251125_110903.jpg
+[2025-12-12 14:09:05] Selected Spotlight image from API: e:\td\pictures\spotlightwallpapers\spot_api_20251125_110903.jpg
+[2025-12-12 14:09:05] Wallpaper successfully set: e:\td\pictures\spotlightwallpapers\spot_api_20251125_110903.jpg
+[2025-12-12 14:09:05] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 14:09:05] Script completed
+[2025-12-12 15:09:01] Cleaning up 1 wallpapers older than 30 days
+[2025-12-12 15:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 15:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 15:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 15:11:21] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_150906.jpg
+[2025-12-12 15:11:21] Selected Spotlight image from API: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_150906.jpg
+[2025-12-12 15:11:21] Wallpaper successfully set: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_150906.jpg
+[2025-12-12 15:11:21] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 15:11:21] Script completed
+[2025-12-12 16:09:01] Cleaning up 1 wallpapers older than 30 days
+[2025-12-12 16:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 16:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 16:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 16:09:05] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_160903.jpg
+[2025-12-12 16:09:05] Duplicate image found: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_160903.jpg is same as spot_api_20251205_180903.jpg at e:\td\pictures\spotlightwallpapers\spot_api_20251205_180903.jpg
+[2025-12-12 16:09:05] Removed duplicate image: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_160903.jpg
+[2025-12-12 16:09:05] Using existing duplicate file: e:\td\pictures\spotlightwallpapers\spot_api_20251205_180903.jpg
+[2025-12-12 16:09:05] Selected Spotlight image from API: e:\td\pictures\spotlightwallpapers\spot_api_20251205_180903.jpg
+[2025-12-12 16:09:05] Wallpaper successfully set: e:\td\pictures\spotlightwallpapers\spot_api_20251205_180903.jpg
+[2025-12-12 16:09:05] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 16:09:05] Script completed
+[2025-12-12 17:09:01] Cleaning up 1 wallpapers older than 30 days
+[2025-12-12 17:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 17:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 17:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 17:09:04] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_170903.jpg
+[2025-12-12 17:09:05] Duplicate image found: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_170903.jpg is same as spot_api_20251125_160903.jpg at e:\td\pictures\spotlightwallpapers\spot_api_20251125_160903.jpg
+[2025-12-12 17:09:05] Removed duplicate image: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_170903.jpg
+[2025-12-12 17:09:05] Using existing duplicate file: e:\td\pictures\spotlightwallpapers\spot_api_20251125_160903.jpg
+[2025-12-12 17:09:05] Selected Spotlight image from API: e:\td\pictures\spotlightwallpapers\spot_api_20251125_160903.jpg
+[2025-12-12 17:09:05] Wallpaper successfully set: e:\td\pictures\spotlightwallpapers\spot_api_20251125_160903.jpg
+[2025-12-12 17:09:05] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 17:09:05] Script completed
+[2025-12-12 17:51:23] Cleaning up 1 wallpapers older than 30 days
+[2025-12-12 17:51:24] Starting duplicate wallpaper cleanup
+[2025-12-12 17:51:24] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 17:51:24] Fetching Spotlight wallpaper from API
+[2025-12-12 17:51:27] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_175125.jpg
+[2025-12-12 17:51:27] Duplicate image found: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_175125.jpg is same as spot_api_20251125_160903.jpg at e:\td\pictures\spotlightwallpapers\spot_api_20251125_160903.jpg
+[2025-12-12 17:51:27] Removed duplicate image: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_175125.jpg
+[2025-12-12 17:51:27] Using existing duplicate file: e:\td\pictures\spotlightwallpapers\spot_api_20251125_160903.jpg
+[2025-12-12 17:51:27] Selected Spotlight image from API: e:\td\pictures\spotlightwallpapers\spot_api_20251125_160903.jpg
+[2025-12-12 17:51:27] Wallpaper successfully set: e:\td\pictures\spotlightwallpapers\spot_api_20251125_160903.jpg
+[2025-12-12 17:51:28] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 17:51:28] Script completed
+[2025-12-12 18:09:01] Starting duplicate wallpaper cleanup
+[2025-12-12 18:09:01] Duplicate cleanup completed. Removed 0 duplicate files.
+[2025-12-12 18:09:01] Fetching Spotlight wallpaper from API
+[2025-12-12 18:09:05] Successfully downloaded image to E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_180903.jpg
+[2025-12-12 18:09:05] Selected Spotlight image from API: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_180903.jpg
+[2025-12-12 18:09:05] Wallpaper successfully set: E:\TD\Pictures\SpotlightWallpapers\spot_api_20251212_180903.jpg
+[2025-12-12 18:09:05] Hash cache saved to E:\github\SpotlightWallpaper\wallpaper_hash_cache.json
+[2025-12-12 18:09:05] Script completed
